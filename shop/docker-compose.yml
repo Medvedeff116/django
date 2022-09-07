@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    build: .
+    container_name: django
+    command: python manage.py runserver 0.0.0.0:8888
+    volumes:
+      - .:/projectpython
+    ports:
+      - 8000:8888
+  db:
+      image: postgres
+      container_name: postgres
+      environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=258462
+            - POSTGRES_DB=shop
+            - POSTGRES_HOST=localhost
+            - POSTGRES_PORT=5432
+      ports:
+        - 5432:5433
