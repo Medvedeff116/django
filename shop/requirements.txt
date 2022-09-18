@@ -1,3 +1,5 @@
 Django==4.0
 psycopg2-binary==2.9.3
 pyaml
+djangorestframework-simplejwt==4.8.0
+PyJWT==2.1.0
