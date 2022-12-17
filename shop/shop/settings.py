@@ -13,7 +13,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -24,7 +23,6 @@ SECRET_KEY = 'django-insecure-8es-46-wqnen(p6yt22q(u!eyh3ea$k)$t&=8el8$eu3%ql%tc
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -78,21 +76,28 @@ WSGI_APPLICATION = 'shop.wsgi.application'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
     ],
 
 }
-
-SWAGGER_SETTINGS = {
-    "SECURITY_DEFINITIONS": {
-        "JWT [Bearer {JWT}]": {
-            "name": "Authorization",
-            "type": "apiKey",
-            "in": "header",
-        }
-    },
-    "USE_SESSION_AUTH": False,
+DJOSER = {
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': False,
 }
 
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('JWT',)
+}
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'api_key': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization'
+        }
+    },
+}
 
 FORCE_SCRIPT_NAME = "/"
 
@@ -109,7 +114,6 @@ DATABASES = {
         'NAME': "shop"
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -160,6 +164,7 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -170,7 +175,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/

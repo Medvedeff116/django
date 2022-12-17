@@ -16,8 +16,8 @@ class ProductAPIView(APIView):
     serializer_class = ProductSerializer
 
     def get(self, request):
-        product = Product.objects.filter(type__name="Phone").values()
-        return Response({'products': list(product)}, status=status.HTTP_200_OK)
+        notebook = Product.objects.all().values()
+        return Response({'products': list(notebook.memory_type.name)}, status=status.HTTP_200_OK)
 
     def post(self, request):
         return Response({'products': 'ok'}, status=status.HTTP_200_OK)
@@ -35,20 +35,25 @@ class ProductAPIView(APIView):
 class ProductAPIList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+
 
 
 class ProductAPIUpdate(generics.RetrieveUpdateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permission_classes = (IsAuthenticated,)
+
 
 
 class ProductAPIDestroy(generics.RetrieveDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-
+    def get_security_definition(self, auto_schema):
+        return {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'api_key',
+        }
 
     #permission_classes = (IsAdminOrReadOnly, )
 
