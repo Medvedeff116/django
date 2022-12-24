@@ -52,14 +52,11 @@ class Memory_type(models.Model):
     name = models.CharField(max_length=255)
 
     def __unicode__(self):
-        return self.name
+        return (self.name)
     class Meta:
         db_table = 'memory_type'
         verbose_name = 'Оперативная память'
         verbose_name_plural = 'Оперативная память'
-
-
-
 
 
 class Video_type(models.Model):
@@ -67,6 +64,8 @@ class Video_type(models.Model):
 
     class Meta:
         db_table = 'video_type'
+        verbose_name = 'Видеокарты'
+        verbose_name_plural = 'Видеокарты'
 
 
 class Cpu_type(models.Model):
@@ -74,6 +73,8 @@ class Cpu_type(models.Model):
 
     class Meta:
         db_table = 'cpu_type'
+        verbose_name = 'Процессоры'
+        verbose_name_plural = 'Процессоры'
 
 class Users(models.Model):
     user_id = models.BigAutoField(primary_key=True)
