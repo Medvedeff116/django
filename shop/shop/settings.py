@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'product.apps.ProductApiConfig',
+    'address.apps.AddressAPIConfig',
     'rest_framework',
     'corsheaders',
     'rest_framework_swagger',
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework.schemas',
     'pyaml',
     'rest_framework_simplejwt'
+
 ]
 
 MIDDLEWARE = [

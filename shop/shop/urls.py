@@ -23,6 +23,7 @@ urlpatterns = [
     path('swagger-ui/', TemplateView.as_view(template_name='docs.html', extra_context={'schema_url': 'api_schema'}),name='swagger-ui'),
     path('api_schema/', get_schema_view(title='Shop API ', description='REST API'), name='api_schema'),
     path('product/', include('product.urls')),
+    path('address/', include('address.urls')),
     path('admin/', admin.site.urls),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),

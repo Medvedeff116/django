@@ -43,7 +43,10 @@ class Notebook(models.Model):
 
 
 
-        def __str__(self):  return str(self.verbose_name)
+        def __str__(self):
+            fields =[self.name]
+            result= " ".join(list(filter(lambda x:x, fields)))
+            return result or ''
 
 
 
@@ -53,6 +56,12 @@ class Memory_type(models.Model):
 
     def __unicode__(self):
         return (self.name)
+
+    def __str__(self):
+        fields = [self.name]
+        result = " ".join(list(filter(lambda x: x, fields)))
+        return result or ''
+
     class Meta:
         db_table = 'memory_type'
         verbose_name = 'Оперативная память'
@@ -62,6 +71,10 @@ class Memory_type(models.Model):
 class Video_type(models.Model):
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        fields = [self.name]
+        result = " ".join(list(filter(lambda x: x, fields)))
+        return result or ''
     class Meta:
         db_table = 'video_type'
         verbose_name = 'Видеокарты'
@@ -71,6 +84,10 @@ class Video_type(models.Model):
 class Cpu_type(models.Model):
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        fields = [self.name]
+        result = " ".join(list(filter(lambda x: x, fields)))
+        return result or ''
     class Meta:
         db_table = 'cpu_type'
         verbose_name = 'Процессоры'
